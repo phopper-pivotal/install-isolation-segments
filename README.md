@@ -88,7 +88,7 @@ is-test
 
 To list the isolation segment for an org or space;
 
-```sh
+```
 cf org is-org
 Getting info for org is-org as admin...
 
@@ -99,7 +99,7 @@ spaces:               dev
 isolation segments:   is-test
 ```
 
-```sh
+```
 cf space dev
 Getting info for space dev in org is-org as admin...
 
