@@ -219,7 +219,7 @@ $ cf curl /v3/organizations/785c432e-46a1-481b-8037-878bdf802477/relationships/d
 ```
 
 #### Enable isolation segments for an existing space
-If a space within an org already existed we can assign that space to the isolation segment
+If a space within an organization already existed we can assign that space to the isolation segment
 
 ```
 $ cf set-space-isolation-segment dev is-test
@@ -228,6 +228,8 @@ OK
 
 In order to move running applications to this isolation segment, they must be restarted.
 ```
+
+** you will note that the applications will need to be restarted, this will move them to the isolation segment
 
 #### Let's push an application
 It's all setup, so let's stage a container and have it auctioned off to a Diego cell in our new isolation segment
