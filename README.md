@@ -198,13 +198,13 @@ cf curl /v3/isolation_segments/c8538feb-d38a-428d-b6d9-9ee7149385f3/organization
 We will need the isolation segment guid and organization guid to assemble necessary command to set a default isolation segment for an organization
 
 ```
-cf curl /v3/organizations/[organization_guid]/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "[isolation segment guid]" } }'
+$ cf curl /v3/organizations/[REPLACE with organization_guid]/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "[REPLACE with isolation segment guid]" } }'
 ```
 
 an example;
 
 ```
-cf curl /v3/organizations/785c432e-46a1-481b-8037-878bdf802477/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "f194b9e4-f91b-4fef-b084-60d239306604" } }'
+$ cf curl /v3/organizations/785c432e-46a1-481b-8037-878bdf802477/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "f194b9e4-f91b-4fef-b084-60d239306604" } }'
 
 {
    "data": {
