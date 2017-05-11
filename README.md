@@ -113,18 +113,75 @@ security groups:     all_open, default_security_group
 ```
 
 ### Enable isolation segments for an organization
-Enable the isolation segment
+Let's enable this created isolation segment for an organization, note `is-org` is only an example please replace with your applicable organization
+
+```
+cf enable-org-isolation is-org is-test
+Enabling isolation segment is-test for org is-org as admin...
+OK
+```
 
 ### Set isolation segments as default for an organization (any space created will be assigned to the isolation segment)
+For non-test purposes we will want to assign an org isolation segment. Once done applications staged will be auctioned off in our new isolation segment
 
 #### Retrieve isolation segment guid, JSON from V3 CAPI
+We will need the isolation segments guid from the JSON result of a query against V3 of CAPI
+
+```json
+cf curl "/v3/isolation_segments?names=is-test"   
+{
+   "pagination": {
+      "total_results": 1,
+      "total_pages": 1,
+      "first": {
+         "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments?names=is-test&page=1&per_page=50"
+      },
+      "last": {
+         "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments?names=is-test&page=1&per_page=50"
+      },
+      "next": null,
+      "previous": null
+   },
+   "resources": [
+      {
+         "guid": "f194b9e4-f91b-4fef-b084-60d239306604",
+         "name": "is-test",
+         "created_at": "2017-05-11T15:33:57Z",
+         "updated_at": "2017-05-11T15:33:57Z",
+         "links": {
+            "self": {
+               "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments/f194b9e4-f91b-4fef-b084-60d239306604"
+            },
+            "organizations": {
+               "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments/f194b9e4-f91b-4fef-b084-60d239306604/organizations"
+            },
+            "spaces": {
+               "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments/f194b9e4-f91b-4fef-b084-60d239306604/relationships/spaces"
+            }
+         }
+      }
+   ]
+}
+```
 
 #### Retrieve organization guid, JSON from V3 CAPI
 
 #### Set default isolation segment for an organization
 
-#### Enable isolation segments for an organization
-
 #### Enable isolation segments for an existing space
+If a space within an org already existed we can assign that space to the isolation segment
+
+```
+$ cf set-space-isolation-segment dev is-test
+Updating isolation segment of space dev in org is-org as admin...
+OK
+
+In order to move running applications to this isolation segment, they must be restarted.
+```
 
 #### Let's push an application
+It's all setup, so let's stage a container and have it auctioned off to a Diego cell in our new isolation segment
+
+```
+$ cf push
+```
