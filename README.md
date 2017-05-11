@@ -37,14 +37,28 @@ replicator \
 **Note:** the "name" as mentioned in the command has a length limitation of 32 characters.
 
 ## Upload and configure isolation segments tile
-
+Let's upload the replicated tile, configure the tile, and apply changes
 ### Upload tile to Ops Manager
+In a browser navigate to your Ops Manager URL and login.
 
-### Add tile to Ops Manager
+Select "Import a Product"
 
-### Configure tile
+![Import a Product](./images/Import_a_Product.png)
+
+**Note:** tile will take some time to upload
+
+Follow the [Pivotal documents](http://docs.pivotal.io/pivotalcf/1-10/opsguide/installing-pcf-is.html#config) for configuring the tile according to your network settings
+
+**Several Notes**
+* When configuring the Networking settings, do not select "Forward SSL to Isolation Segment Router with ERT Router certificates", this is an experimental feature that will be removed in a future version of the tile.
+* There will be two network configurations you can choose from;
+** "Forward SSL to Isolation Segment Router with provided certificates" - should be the default for all non-development environments. You can copy in the certificate used on the externl load balancer. Load balancer can forward encrypted traffic to the Elastic Runtime Router for the isolation segment. Be sure to complete the fields for the Router SSL Termination Certificate and Private Key and Router SSL Ciphers. If you need to create a new certificate, you can specify a separate wildcard domain that's specific to the isolation segment.
+** "Forward unencrypted traffic to Elastic Runtime Router" - this is a good setting to use in a development environment where load balancing is not required
+
+Once configured, apply changes.
 
 ## CF CLI
+Now that the isolation segments tile has been applied to the environment we can now begin to setup the necessary segments, assign them to org and spaces and then push an application to the newly created isolation segment.
 
 ### Create an isolation segment
 
