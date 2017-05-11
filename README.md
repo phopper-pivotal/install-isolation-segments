@@ -52,8 +52,10 @@ Follow the [Pivotal documents](http://docs.pivotal.io/pivotalcf/1-10/opsguide/in
 **Several Notes**
 * When configuring the Networking settings, do not select "Forward SSL to Isolation Segment Router with ERT Router certificates", this is an experimental feature that will be removed in a future version of the tile.
 * There will be two network configurations you can choose from;
-** "Forward SSL to Isolation Segment Router with provided certificates" - should be the default for all non-development environments. You can copy in the certificate used on the externl load balancer. Load balancer can forward encrypted traffic to the Elastic Runtime Router for the isolation segment. Be sure to complete the fields for the Router SSL Termination Certificate and Private Key and Router SSL Ciphers. If you need to create a new certificate, you can specify a separate wildcard domain that's specific to the isolation segment.
-** "Forward unencrypted traffic to Elastic Runtime Router" - this is a good setting to use in a development environment where load balancing is not required
+   * "Forward SSL to Isolation Segment Router with provided certificates" - should be the default for all non-development environments. You can copy in the certificate used on the externl load balancer. 
+     * Load balancer can forward encrypted traffic to the Elastic Runtime Router for the isolation segment. Be sure to complete the fields for the Router SSL Termination Certificate and Private Key and Router SSL Ciphers. 
+     * If you need to create a new certificate, you can specify a separate wildcard domain that's specific to the isolation segment.
+   * "Forward unencrypted traffic to Elastic Runtime Router" - this is a good setting to use in a development environment where load balancing is not required
 ![Configure Networking](./images/Isolation_Segments_configure_tile.png)
 
 Once configured, apply changes.
