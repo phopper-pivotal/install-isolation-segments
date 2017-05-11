@@ -64,7 +64,9 @@ Once configured, apply changes.
 Now that the isolation segments tile has been applied to the environment we can now begin to setup the necessary segments, assign them to org and spaces and then push an application to the newly created isolation segment.
 
 ### Create an isolation segment
-The name of the isolation segment **must** be the name we assigned to the tile above. Otherwise you will get a `NoCompatibleCell` error when pushing an application. Please verify the version of CF CLI before proceeding, otherwise we will get errors that `... is not a registered command`.
+The name of the isolation segment **must** be the name we assigned to the tile above. Otherwise you will get a `NoCompatibleCell` error when pushing an application. In this example we will call our isolation segment `is-test`, please replace for your environment.
+
+**Please verify the version of CF CLI before proceeding, otherwise we will get errors that `... is not a registered command`.**
 
 ```sh
 $ cf create-isolation-segment is-test
@@ -82,6 +84,32 @@ OK
 name         orgs
 shared       
 is-test  
+```
+
+To list the isolation segment for an org or space;
+
+```sh
+cf org is-org
+Getting info for org is-org as admin...
+
+name:                 is-org
+domains:              cfapps.haas-46.pez.pivotal.io, tcp.haas-46.pez.pivotal.io
+quota:                default
+spaces:               dev
+isolation segments:   is-test
+```
+
+```sh
+cf space dev
+Getting info for space dev in org is-org as admin...
+
+name:                dev
+org:                 is-org
+apps:                scale-demo
+services:            
+isolation segment:   is-test
+space quota:         
+security groups:     all_open, default_security_group
 ```
 
 ### Enable isolation segments for an organization
