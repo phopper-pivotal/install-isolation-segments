@@ -64,6 +64,13 @@ Once configured, apply changes.
 Now that the isolation segments tile has been applied to the environment we can now begin to setup the necessary segments, assign them to org and spaces and then push an application to the newly created isolation segment.
 
 ### Create an isolation segment
+The name of the isolation segment **must** be the name we assigned to the tile above. Otherwise you will get a `NoCompatibleCell` error when pushing an application
+
+```
+$ ~/bin/cf create-isolation-segment is-test
+Creating isolation segment is-test as admin...
+OK
+```
 
 ### Enable isolation segments for an organization
 
