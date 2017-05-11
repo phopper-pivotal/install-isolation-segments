@@ -20,7 +20,9 @@ Download [isolation segments tile](https://network.pivotal.io/products/isolation
 **Note:** you will need to have an account on PivNet to download this tile.
 
 ### Download tile replicator
-We will need to create at least 1 replicate of the isolation tile. A unique name is given to each tile, one that will be used as the isolation segment we will create later via CF CLI. The replicator can be downloaded from [here](https://github.com/pivotal-cf/replicator).
+We will need to create at least 1 replicate of the isolation tile. A unique name is given to each tile, one that will be used as the isolation segment we will create later via CF CLI. The replicator can be downloaded from [here](https://network.pivotal.io/products/isolation-segment).
+
+![Isolation Tile Downloads](./images/Isolation_Segment_Tile_Replicator_download_page.png)
 
 Once downloaded, unpack the ZIP file. It will contain three binaries, please use the one respective to the OS where you will be replicating the tile. This may be macOS (Darwin), and so on... **If on macOS or Lunux be sure to set the files to executable.**
 
