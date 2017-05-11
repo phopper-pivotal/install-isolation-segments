@@ -165,8 +165,58 @@ cf curl "/v3/isolation_segments?names=is-test"
 ```
 
 #### Retrieve organization guid, JSON from V3 CAPI
+We will need the organizationss guid from the JSON result of a query against V3 of CAPI
+
+```json
+cf curl /v3/isolation_segments/c8538feb-d38a-428d-b6d9-9ee7149385f3/organizations 
+{
+   "pagination": {
+      "total_results": 1,
+      "total_pages": 1,
+      "first": {
+         "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments/c8538feb-d38a-428d-b6d9-9ee7149385f3/organizations?page=1&per_page=50"
+      },
+      "last": {
+         "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/isolation_segments/c8538feb-d38a-428d-b6d9-9ee7149385f3/organizations?page=1&per_page=50"
+      },
+      "next": null,
+      "previous": null
+   },
+   "resources": [
+      {
+         "guid": "785c432e-46a1-481b-8037-878bdf802477",
+         "created_at": "2017-05-11T13:37:02Z",
+         "updated_at": "2017-05-11T14:11:59Z",
+         "name": "is-org",
+         "links": {}
+      }
+   ]
+}
+```
 
 #### Set default isolation segment for an organization
+We will need the isolation segment guid and organization guid to assemble necessary command to set a default isolation segment for an organization
+
+```
+cf curl /v3/organizations/[organization_guid]/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "[isolation segment guid]" } }'
+```
+
+an example;
+
+```
+cf curl /v3/organizations/785c432e-46a1-481b-8037-878bdf802477/relationships/default_isolation_segment -X PATCH -d '{ "data": { "guid": "f194b9e4-f91b-4fef-b084-60d239306604" } }'
+
+{
+   "data": {
+      "guid": "f194b9e4-f91b-4fef-b084-60d239306604"
+   },
+   "links": {
+      "self": {
+         "href": "https://api.cfapps.haas-46.pez.pivotal.io/v3/organizations/785c432e-46a1-481b-8037-878bdf802477/relationships/default_isolation_segment"
+      }
+   }
+}
+```
 
 #### Enable isolation segments for an existing space
 If a space within an org already existed we can assign that space to the isolation segment
