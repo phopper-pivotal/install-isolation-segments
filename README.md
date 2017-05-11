@@ -26,6 +26,7 @@ We will need to create at least 1 replicate of the isolation tile. A unique name
 
 Once downloaded, unpack the ZIP file. It will contain three binaries, please use the one respective to the OS where you will be replicating the tile. This may be macOS (Darwin), and so on... **If on macOS or Lunux be sure to set the files to executable.**
 
+### Clone tile
 ```
 replicator \
     -name "name_of_my_isolation_segment" \
@@ -34,8 +35,6 @@ replicator \
 ```
 
 **Note:** the "name" as mentioned in the command has a length limitation of 32 characters.
-
-### Clone tile
 
 ## Upload and configure isolation segments tile
 
