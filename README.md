@@ -229,7 +229,7 @@ OK
 In order to move running applications to this isolation segment, they must be restarted.
 ```
 
-** you will note that the applications will need to be restarted, this will move them to the isolation segment
+**you will note that the applications will need to be restarted, this will move them to the isolation segment**
 
 #### Let's push an application
 It's all setup, so let's stage a container and have it auctioned off to a Diego cell in our new isolation segment
